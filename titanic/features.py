@@ -47,3 +47,11 @@ def add_family_type(df):
     df.loc[(df["Family Size"] > 1) & (df["Family Size"] < 5), "Family Type"] = "Small"
     df.loc[df["Family Size"] >= 5, "Family Type"] = "Large"
     return df
+
+def add_aggregated_titles(df):
+    titles = df["Title"].replace({"Mlle.": "Miss.", "Ms.": "Miss.", "Mme.": "Mrs."})
+    titles = titles.replace([
+        "Lady.", "the Countess.", "Capt.", "Col.", "Don.", "Dr.",
+        "Major.", "Rev.", "Sir.", "Jonkheer.", "Dona.",
+    ], "Rare")
+    return df.assign(Titles=titles)
