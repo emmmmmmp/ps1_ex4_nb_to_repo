@@ -55,3 +55,6 @@ def add_aggregated_titles(df):
         "Major.", "Rev.", "Sir.", "Jonkheer.", "Dona.",
     ], "Rare")
     return df.assign(Titles=titles)
+
+def unify_sex(df, mapping):
+    return df.assign(Sex=df["Sex"].map(mapping).astype(int))
