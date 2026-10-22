@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 def plot_counts(df, column, hue, palette, figsize):
     """Plot passenger counts grouped by the requested hue."""
     fig, ax = plt.subplots(figsize=figsize)
