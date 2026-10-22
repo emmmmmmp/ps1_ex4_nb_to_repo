@@ -39,3 +39,11 @@ def parse_names_execution(df):
     df = df.copy()
     df[NAME_COLUMNS] = df.apply(parse_names, axis=1)
     return df
+
+def add_family_type(df):
+    df = df.copy()
+    df["Family Type"] = pd.Series(index=df.index, dtype="object")
+    df.loc[df["Family Size"] == 1, "Family Type"] = "Single"
+    df.loc[(df["Family Size"] > 1) & (df["Family Size"] < 5), "Family Type"] = "Small"
+    df.loc[df["Family Size"] >= 5, "Family Type"] = "Large"
+    return df
