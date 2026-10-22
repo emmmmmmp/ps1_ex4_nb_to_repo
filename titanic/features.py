@@ -1,3 +1,6 @@
+import numpy as np
+import pandas as pd
+
 def add_family_size(df):
     return df.assign(**{"Family Size": df["SibSp"] + df["Parch"] + 1})
 
@@ -35,7 +38,7 @@ def parse_names(row):
     except Exception as ex:
         print(f"Exception: {ex}")
 
-def parse_names_execution(df):
+def parse_names_execution(df, NAME_COLUMNS):
     df = df.copy()
     df[NAME_COLUMNS] = df.apply(parse_names, axis=1)
     return df

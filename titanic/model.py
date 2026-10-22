@@ -1,3 +1,5 @@
+from sklearn.ensemble import RandomForestClassifier
+
 def features_and_target(df, predictors, target):
     return df[predictors], df[target].values
 
