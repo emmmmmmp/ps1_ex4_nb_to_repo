@@ -85,5 +85,20 @@ def summarise_frequent_values(df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows).set_index("Column")
 
 
+def summarise_unique_values(df: pd.DataFrame) -> pd.DataFrame:
+    """Count non-missing and unique values in each column.
+
+    Args:
+        df: DataFrame to inspect.
+
+    Returns:
+        A DataFrame containing non-missing observation
+        counts and unique-value counts by column.
+    """
+    return pd.DataFrame({
+        "Total": df.count(),
+        "Uniques": df.nunique()
+    })
+
 
 
