@@ -130,5 +130,10 @@ def combine_datasets(
         ignore_index=True
     )
 
+def summarise_survival(df: pd.DataFrame) -> pd.DataFrame:
+    """Calculate mean survival by title and sex."""
+    return train_df[['Titles', 'Sex', 'Survived']].groupby(
+        ['Titles', 'Sex'], as_index=False
+    ).mean()
 
 
