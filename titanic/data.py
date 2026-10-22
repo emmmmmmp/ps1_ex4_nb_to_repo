@@ -102,3 +102,33 @@ def summarise_unique_values(df: pd.DataFrame) -> pd.DataFrame:
 
 
 
+def combine_datasets(
+    train_df: pd.DataFrame,
+    test_df: pd.DataFrame
+) -> pd.DataFrame:
+    """Combine Titanic train and test data for analysis.
+
+    Adds a 'set' column identifying the source dataset.
+    Missing columns are retained and filled with NaN.
+
+    Args:
+        train_df: Titanic training dataset.
+        test_df: Titanic test dataset.
+
+    Returns:
+        A combined DataFrame identifying train/test rows.
+    """
+    train = train_df.copy()
+    test = test_df.copy()
+
+    train["set"] = "train"
+    test["set"] = "test"
+
+    return pd.concat(
+        [train, test],
+        axis=0,
+        ignore_index=True
+    )
+
+
+
