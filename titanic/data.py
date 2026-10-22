@@ -22,3 +22,28 @@ def load_titanic_data(
     test_df = pd.read_csv(data_dir / "test.csv")
 
     return train_df, test_df
+
+def summarise_missing_data(df: pd.DataFrame) -> pd.DataFrame:
+    """Summarise missing values and data types by column.
+
+    Args:
+        df: DataFrame to inspect.
+
+    Returns:
+        A DataFrame containing missing-value counts,
+        percentages and column data types.
+    """
+    total = df.isna().sum()
+    percent = total / len(df) * 100 if len(df) else total.astype(float)
+
+    summary = pd.DataFrame({
+        "Total": total,
+        "Percent": percent,
+        "Types": df.dtypes.astype(str)
+    })
+
+    return summary
+
+
+
+
